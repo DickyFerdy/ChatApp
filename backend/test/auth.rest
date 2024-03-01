@@ -1,0 +1,47 @@
+# Signup
+### should can create new user
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "test",
+  "full_name": "test",
+  "password": "test",
+  "confirm_password": "test",
+  "gender": "male"
+}
+
+### should reject if username already exist
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "test",
+  "full_name": "test",
+  "password": "test",
+  "confirm_password": "test",
+  "gender": "male"
+}
+
+### should reject if passwords don't match
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "test",
+  "full_name": "test",
+  "password": "test",
+  "confirm_password": "testt",
+  "gender": "male"
+}
+
+### should reject if request is invalid
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "test123",
+  "full_name": "test",
+  "password": "test",
+  "confirm_password": "test"
+}
