@@ -22,8 +22,9 @@ class User {
     return rows[0];
   };
 
-  static async deleteByUsername(username) {
-    await pool.query(userQueries.deleteByUsername, [username]);
+  static async getUser(username) {
+    const { rows } = await pool.query(userQueries.getUser, [username]);
+    return rows[0];
   };
 };
 

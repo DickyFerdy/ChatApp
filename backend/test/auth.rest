@@ -45,3 +45,40 @@ Content-Type: application/json
   "password": "test",
   "confirm_password": "test"
 }
+
+
+# Login
+### should can login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test"
+}
+
+### should reject if password is wrong
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test123"
+}
+
+### should reject if username is not found
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "test123",
+  "password": "test"
+}
+
+### should reject if request is invalid
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "test"
+}

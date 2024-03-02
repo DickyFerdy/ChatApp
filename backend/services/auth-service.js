@@ -39,11 +39,42 @@ const signup = async (req, res) => {
       }
     }
   } catch (error) {
-    logger.error(`Error in auth service ${error.message}`);
+    logger.error(`Error in signup service ${error.message}`);
     ResponseError(res, 500, "Internal Server Error");
   }
-}
+};
+
+const login = async (req, res) => {
+  try {
+    const { username, password } = req;
+    
+    const getUser = await User.getUser(username);
+    
+    if (!getUser) {
+      ResponseError(res, 400, "Invalid username or password");
+    }
+    
+    const checkPassword = await bcrypt.compare(password, getUser.password || "");
+
+    if (!checkPassword) {
+      ResponseError(res, 400, "Invalid username or password");
+    }
+
+    generateTokenAndSetCookie(getUser.user_id, res);
+
+    return {
+      user_id: getUser.user_id,
+      username: getUser.username,
+      full_name: getUser.full_name,
+      profile_pic: getUser.profile_pic
+    }
+  } catch (error) {
+    logger.error(`Error in login service ${error.message}`);
+    ResponseError(res, 500, "Internal Server Error");
+  }
+};
 
 export default {
-  signup
+  signup,
+  login,
 };
