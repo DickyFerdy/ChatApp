@@ -4,8 +4,11 @@ const signup = 'INSERT INTO "User" (username, full_name, password, gender, profi
 
 const getUser = 'SELECT user_id, username, full_name, password, profile_pic from "User" WHERE username = $1';
 
+const getUserById = 'SELECT user_id, username, full_name, profile_pic from "User" WHERE user_id = $1';
+
 export default {
   getUsername,
   signup,
   getUser,
+  getUserById,
 };

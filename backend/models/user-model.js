@@ -26,6 +26,11 @@ class User {
     const { rows } = await pool.query(userQueries.getUser, [username]);
     return rows[0];
   };
+
+  static async getUserById(userId) {
+    const { rows } = await pool.query(userQueries.getUserById, [userId]);
+    return rows[0];
+  };
 };
 
 export default User;
