@@ -20,7 +20,20 @@ const login = async (req, res, next) => {
   }
 };
 
+const logout = (_, res, next) => {
+  try {
+    res.cookie("jwt", "", {
+      maxAge: 0,
+    });
+    const result = authService.logout(res);
+    res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   signup,
   login,
+  logout,
 };

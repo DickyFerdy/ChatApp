@@ -74,7 +74,19 @@ const login = async (req, res) => {
   }
 };
 
+const logout = (res) => {
+  try {
+    return {
+      message: "Logged out successfully",
+    };
+  } catch (error) {
+    logger.error(`Error in logout service ${error.message}`);
+    ResponseError(res, 500, "Internal Server Error");
+  }
+};
+
 export default {
   signup,
   login,
+  logout,
 };

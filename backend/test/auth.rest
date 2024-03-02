@@ -82,3 +82,7 @@ Content-Type: application/json
 {
   "username": "test"
 }
+
+# Logout
+### should can logout
+POST http://localhost:5000/api/auth/logout
