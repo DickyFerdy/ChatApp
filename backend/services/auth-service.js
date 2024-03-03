@@ -11,12 +11,14 @@ const signup = async (req, res) => {
 
     if (password !== confirm_password) {
       ResponseError(res, 400, "Passwords don't match");
+      logger.warn("Passwords don't match");
     }
   
     const user = await User.getUsername(username);
   
     if (user) {
       ResponseError(res, 400, "Username already exists");
+      logger.warn("Username already exists");
     }
   
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -52,12 +54,14 @@ const login = async (req, res) => {
     
     if (!getUser) {
       ResponseError(res, 400, "Invalid username or password");
+      logger.warn("Invalid username or password");
     }
     
     const checkPassword = await bcrypt.compare(password, getUser.password || "");
 
     if (!checkPassword) {
       ResponseError(res, 400, "Invalid username or password");
+      logger.warn("Invalid username or password");
     }
 
     generateTokenAndSetCookie(getUser.user_id, res);
