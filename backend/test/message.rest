@@ -1,0 +1,29 @@
+### Login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test"
+}
+
+### Logout
+POST http://localhost:5000/api/auth/logout
+
+
+# Send Message
+### should can send message
+POST http://localhost:5000/api/messages/send/09d16bb9-330f-4579-a415-9f88e8ebd42c
+Content-Type: application/json
+
+{
+  "message": "HALOOO TEST 3, I AM TEST!"
+}
+
+### should reject if id is not found
+POST http://localhost:5000/api/messages/send/93b2a41c-8a93-428a-a4fd-4edc2cbe104
+Content-Type: application/json
+
+{
+  "message": "HALOOO"
+}
