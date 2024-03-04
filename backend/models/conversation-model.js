@@ -19,7 +19,7 @@ class Conversation {
   };
 
   static async createConversationParticipant(conversation_id, user_id) {
-    await pool.query(conversationQueries.createParticipants, [conversation_id, user_id]);
+    await pool.query(conversationQueries.createConversationParticipant, [conversation_id, user_id]);
   };
 
   static async createConversationMessage(conversation_id, message_id) {
