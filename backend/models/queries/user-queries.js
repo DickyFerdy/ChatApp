@@ -6,9 +6,12 @@ const getUser = 'SELECT user_id, username, full_name, password, profile_pic from
 
 const getUserById = 'SELECT user_id, username, full_name, profile_pic from "User" WHERE user_id = $1';
 
+const getNonLoggedInUsers = 'SELECT user_id, username, full_name, profile_pic from "User" WHERE user_id != $1';
+
 export default {
   getUsername,
   signup,
   getUser,
   getUserById,
+  getNonLoggedInUsers,
 };

@@ -31,6 +31,11 @@ class User {
     const { rows } = await pool.query(userQueries.getUserById, [userId]);
     return rows[0];
   };
+
+  static async getNonLoggedInUsers(userId) {
+    const { rows } = await pool.query(userQueries.getNonLoggedInUsers, [userId]);
+    return rows;
+  };
 };
 
 export default User;

@@ -1,0 +1,21 @@
+### Login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test"
+}
+
+
+### Logout
+POST http://localhost:5000/api/auth/logout
+
+
+# getUsers
+### should can get non logged in users
+GET http://localhost:5000/api/users
+
+
+### should reject if user is not logged in
+GET http://localhost:5000/api/users
