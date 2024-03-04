@@ -13,6 +13,11 @@ class Message {
     const { rows } = await pool.query(messageQueries.createMessage, [sender_id, receiver_id, message, created_at]);
     return rows[0];
   };
+
+  static async getMessage(sender_id_1, receiver_id_1, sender_id_2, receiver_id_2) {
+    const { rows } = await pool.query(messageQueries.getMessage, [sender_id_1, receiver_id_1, sender_id_2, receiver_id_2]);
+    return rows;
+  }
 };
 
 export default Message;

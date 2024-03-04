@@ -13,11 +13,11 @@ POST http://localhost:5000/api/auth/logout
 
 # Send Message
 ### should can send message
-POST http://localhost:5000/api/messages/send/09d16bb9-330f-4579-a415-9f88e8ebd42c
+POST http://localhost:5000/api/messages/send/774ee694-0ecf-4f35-ac62-aa048f07a24f
 Content-Type: application/json
 
 {
-  "message": "HALOOO TEST 3, I AM TEST!"
+  "message": "Hallo test 2, i am test 1"
 }
 
 ### should reject if id is not found
@@ -27,3 +27,12 @@ Content-Type: application/json
 {
   "message": "HALOOO"
 }
+
+
+# Get Message
+### should can get message
+GET http://localhost:5000/api/messages/774ee694-0ecf-4f35-ac62-aa048f07a24f
+
+
+### should return empty array if not have message
+GET http://localhost:5000/api/messages/09d16bb9-330f-4579-a415-9f88e8ebd42d

@@ -36,6 +36,22 @@ const sendMessage = async (req, res, receiverId, senderId) => {
   }
 };
 
+const getMessage = async (res, receiverId, senderId) => {
+  try {
+    const conversation = await Message.getMessage(senderId, receiverId, receiverId, senderId);
+
+    if (!conversation) {
+      return res.status(200).json([]);
+    }
+
+    return conversation;
+  } catch (error) {
+    logger.error(`Error in getMessage service ${error.message}`);
+    ResponseError(res, 500, 'Internal Server Error');
+  }
+};
+
 export default {
-  sendMessage
+  sendMessage,
+  getMessage,
 };
