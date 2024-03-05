@@ -2,6 +2,7 @@ import { logger } from "../application/logging.js";
 import ResponseError from "../error/ResponseError.js";
 import Conversation from "../models/conversation-model.js";
 import Message from "../models/message-model.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 const sendMessage = async (req, res, receiverId, senderId) => {
   try {
@@ -21,6 +22,12 @@ const sendMessage = async (req, res, receiverId, senderId) => {
 
     if (newMessage) {
       await Conversation.createConversationMessage(conversation.conversation_id, newMessage.message_id);
+    }
+
+    const receiverSocketId = getReceiverSocketId(receiverId);
+
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
     }
 
     return {
